@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const { body, _ } = require('express-validator');
 const requireAdmin = require('./../../middlewares/admin-middleware');
-//const requireAuth = require('./../../middlewares/jwt-middleware');
-var { expressjwt: jwt } = require("express-jwt")
+const requireAuth = require('./../../middlewares/jwt-middleware');
 const requireActive = require('./../../middlewares/status-middleware');
 const requireOwnership = require('./../../middlewares/owns-middleware');
 const requireWalletCheck = require('./../../middlewares/wallet-middleware');
@@ -12,9 +11,6 @@ const bettingValidator = require('./betting.validator');
 const bettingCtrl = require('./betting.controller');
 
 const router = Router()
-
-// Error: secret should be set - config.js check and check the .env path
-const requireAuth = jwt({ secret: config.jwtSecret, algorithms: ["HS256"] })
 
 router
   .route('/return/:transaction_id')
